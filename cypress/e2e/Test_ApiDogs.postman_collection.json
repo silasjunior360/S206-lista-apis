@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "2141012f-4a82-476f-a3f7-eb8664de8668",
+		"name": "Test_ApiDogs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39922006"
+	},
+	"item": [
+		{
+			"name": "New Folder",
+			"item": [
+				{
+					"name": "Mostrar lista",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breeds/list/all",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breeds",
+								"list",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raça que nao existe(negativo)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains image URL\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('message');\r",
+									"    pm.expect(jsonData.message).to.be.a('string').that.includes('http');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breeds/MACARRAO/images/random",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breeds",
+								"MACARRAO",
+								"images",
+								"random"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar img dog africano",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Resposta contém o status 'success'\", function () {\r",
+									"    var jsonResponse = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonResponse.status).to.equal(\"success\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breed/african/images/random",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breed",
+								"african",
+								"images",
+								"random"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostrar Sub-raças",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Resposta contém o status 'success'\", function () {\r",
+									"    var jsonResponse = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonResponse.status).to.equal(\"success\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breed/hound/list",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breed",
+								"hound",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 imagens de cachorros aleatorios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Resposta contém o campo 'message' com 3 URLs de imagens\", function () {\r",
+									"   var jsonResponse = pm.response.json();\r",
+									"\r",
+									"    pm.expect(jsonResponse.message).to.be.an(\"array\");\r",
+									"    pm.expect(jsonResponse.message.length).to.equal(3);\r",
+									"    \r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breed/hound/images/random/3",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breed",
+								"hound",
+								"images",
+								"random",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "numero negativo de cachorros(negativo)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response contains image URL\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('message');\r",
+									"    pm.expect(jsonData.message).to.be.a('string').that.includes('http');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breed/hound/afghan/images/-3",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breed",
+								"hound",
+								"afghan",
+								"images",
+								"-3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
